@@ -1,0 +1,7 @@
+Amy	1100110
+Sarah	0110110
+John	1010000
+Karam	0110000
+Aleysha	1110000
+
+
