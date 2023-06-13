@@ -14,11 +14,13 @@ using namespace std;
 const int WEEK_SIZE = 7;
 
 vector<int> nurseList( WEEK_SIZE,0);
-map<string, string> nurseMap;
-void getShiftsByDay(map<string, string> nurseMap) {
-    for(auto [key, val] : nurseMap) {
-        for(int i = 0; i < 7; i++) {
-            if (val[i] == '1') {
+map<string, vector<int> > nurseMap;
+
+void getShiftsByDay(map<string, std::vector<int> > nurseMap) {
+    for(auto value : nurseMap) {
+        int i = 0;
+        for (auto workDay : value.second) {
+            if (workDay == 1) {
                 nurseList.at(i)++;
             }
         }

@@ -1,3 +1,9 @@
+/*
+ * @Author: Rex Joush
+ * @Date: 2023-06-10 15:52:39
+ * @LastEditors: Rex Joush
+ * @LastEditTime: 2023-06-10 15:53:43
+ */
 #include <iostream>
 #include "./function.h"
 #include "./function.cpp"
