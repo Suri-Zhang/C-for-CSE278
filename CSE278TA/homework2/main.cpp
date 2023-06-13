@@ -28,11 +28,8 @@ int main() {
             return 0;
         }
 
+        // printShifts(inputDay);
         printShifts(inputDay);
-        if (!printShifts(inputDay)) {
-            cout << "---- Nurses ----\n0 nurse(s) work(s) on " << inputDay << endl;
-        }
-
 
     }
 }

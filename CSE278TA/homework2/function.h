@@ -8,6 +8,6 @@ using std::string;
 using std::map;
 
 void getShiftsByDay(map<string, std::vector<int> > nurseMap);
-bool printShifts(string &day);
+void printShifts(string &day);
 
 #endif
