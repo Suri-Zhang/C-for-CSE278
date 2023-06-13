@@ -14,7 +14,7 @@ using namespace std;
 const int WEEK_SIZE = 7;
 
 vector<int> nurseList( WEEK_SIZE,0);
-map<string, vector<int> > nurseMap;
+map<string, string> nurseMap;
 
 void getShiftsByDay(map<string, std::vector<int> > nurseMap) {
     for(auto value : nurseMap) {
@@ -27,7 +27,7 @@ void getShiftsByDay(map<string, std::vector<int> > nurseMap) {
     }
 }
 
-vector<string> get_work_list(map<string, string> nurseMap, int day) {
+vector<string> get_work_list(int day) {
     vector<string> list;
     // Amy	1100110
     for(auto [key, val] : nurseMap) {
@@ -38,7 +38,7 @@ vector<string> get_work_list(map<string, string> nurseMap, int day) {
     return list;
 }
 
-string get_list_string(vector<string> nurses) {
+string get_list_string(const vector<string>& nurses) {
     string res;
     for (const auto &item: nurses){
         res += item + "\n";
@@ -77,19 +77,19 @@ void printShifts(string& day) {
     // bool check = true;
     vector<string> list;
     if (day == "Monday") {
-        list = get_work_list(nurseMap, 0);
+        list = get_work_list(0);
     } else if (day == "Tuesday") {
-        list = get_work_list(nurseMap, 1);
+        list = get_work_list(1);
     } else if (day == "Wednesday") {
-        list = get_work_list(nurseMap, 2);
+        list = get_work_list(2);
     } else if (day == "Thursday") {
-        list = get_work_list(nurseMap, 3);
+        list = get_work_list(3);
     } else if (day == "Friday") {
-        list = get_work_list(nurseMap, 4);
+        list = get_work_list(4);
     } else if (day == "Saturday") {
-        list = get_work_list(nurseMap, 5);
+        list = get_work_list(5);
     } else if (day == "Sunday") {
-        list = get_work_list(nurseMap, 6);
+        list = get_work_list(6);
     }
     cout << get_list_string(list) << list.size() << " nurse(s) work(s) on " << day << endl;
     //  return check;
