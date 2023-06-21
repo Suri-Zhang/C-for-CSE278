@@ -2,6 +2,7 @@
 #include <fstream>
 #include <map>
 #include <vector>
+#include "C:\Program Files\MySQL\Connector C++ 8.0\include\mysql\jdbc.h"
 
 using namespace std;
 //using std::cout;
