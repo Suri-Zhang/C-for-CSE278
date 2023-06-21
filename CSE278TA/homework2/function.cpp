@@ -1,13 +1,8 @@
-/*
- * @Author: Rex Joush
- * @Date: 2023-06-10 15:52:39
- * @LastEditors: Rex Joush
- * @LastEditTime: 2023-06-10 15:53:20
- */
 #include <iostream>
 #include <fstream>
 #include <map>
 #include <vector>
+#include "C:\Program Files\MySQL\Connector C++ 8.0\include\mysql\jdbc.h"
 
 using namespace std;
 //using std::cout;
@@ -20,21 +15,36 @@ using namespace std;
 const int WEEK_SIZE = 7;
 
 vector<int> nurseList( WEEK_SIZE,0);
+map<string, string> nurseMap;
 
-void getShiftsByDay(map<string, string> nurseMap) {
-    for(auto [key, val] : nurseMap) {
-//        int i = 0;
-//        for (auto workDay : value.second) {
-//            if (workDay == 1) {
-//                nurseList.at(i)++;
-//            }
-//        }
-        for(int i = 0; i < 7; i++) {
-            if (val[i] == '1') {
+void getShiftsByDay(map<string, std::vector<int> > nurseMap) {
+    for(auto value : nurseMap) {
+        int i = 0;
+        for (auto workDay : value.second) {
+            if (workDay == 1) {
                 nurseList.at(i)++;
             }
         }
     }
+}
+
+vector<string> get_work_list(int day) {
+    vector<string> list;
+    // Amy	1100110
+    for(auto [key, val] : nurseMap) {
+        if (val[day] == '1') {
+            list.push_back(key);
+        }
+    }
+    return list;
+}
+
+string get_list_string(const vector<string>& nurses) {
+    string res;
+    for (const auto &item: nurses){
+        res += item + "\n";
+    }
+    return res;
 }
 
 bool loadFile(const string& filename) {
@@ -44,7 +54,6 @@ bool loadFile(const string& filename) {
         cerr << "Error: Could not open file " << filename << endl;
         return false;
     }
-    map<string, string> nurseMap;
     string line;
     while (getline(ifs, line)) {
         if (line.empty()) {
@@ -59,7 +68,7 @@ bool loadFile(const string& filename) {
         }
     }
 
-    getShiftsByDay(nurseMap);
+    // getShiftsByDay(nurseMap);
     return true;
 }
 
@@ -67,23 +76,24 @@ bool loadFile(const string& filename) {
 void printShifts(string& day) {
 
     // bool check = true;
+    vector<string> list;
     if (day == "Monday") {
-        cout << nurseList[0] << " nurse(s) work(s) on " << day << endl;
+        list = get_work_list(0);
     } else if (day == "Tuesday") {
-        cout << nurseList[1] << " nurse(s) work(s) on " << day << endl;
+        list = get_work_list(1);
     } else if (day == "Wednesday") {
-        cout << nurseList[2] << " nurse(s) work(s) on " << day << endl;
+        list = get_work_list(2);
     } else if (day == "Thursday") {
-        cout << nurseList[3] << " nurse(s) work(s) on " << day << endl;
+        list = get_work_list(3);
     } else if (day == "Friday") {
-        cout << nurseList[4] << " nurse(s) work(s) on " << day << endl;
+        list = get_work_list(4);
     } else if (day == "Saturday") {
-        cout << nurseList[5] << " nurse(s) work(s) on " << day << endl;
+        list = get_work_list(5);
     } else if (day == "Sunday") {
-        cout << nurseList[6] << " nurse(s) work(s) on " << day << endl;
-    } else {
-        cout << "0 nurse(s) work(s) on " << day << endl;
+        list = get_work_list(6);
     }
+    cout << get_list_string(list) << list.size() << " nurse(s) work(s) on " << day << endl;
     //  return check;
 }
+
 
