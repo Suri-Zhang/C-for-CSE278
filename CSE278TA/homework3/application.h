@@ -5,8 +5,8 @@
 #ifndef CSE278_APPLICATION_H
 #define CSE278_APPLICATION_H
 
-#include "/Users/mona/Documents/CSE278/mysql++/lib/mysql++.h"
-//#include <mysql++/mysql++.h>
+// #include "/mysql++.h"
+#include <mysql++/mysql++.h>
 #include <iostream>
 
 using namespace std;
